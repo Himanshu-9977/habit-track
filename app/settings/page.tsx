@@ -2,7 +2,6 @@ import { auth, currentUser } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { PushNotificationToggle } from "@/components/push-notification-toggle"
-import { getCurrentUser } from "@/lib/user"
 
 export default async function SettingsPage() {
   const { userId } = await auth()
@@ -11,9 +10,7 @@ export default async function SettingsPage() {
     redirect("/sign-in")
   }
 
-  const user = await getCurrentUser()
-
-  // Get user data from Clerk as a fallback
+  // Get user data from Clerk
   const clerkUser = await currentUser()
 
   return (
@@ -28,7 +25,13 @@ export default async function SettingsPage() {
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
-              
+
+              <div className="grid grid-cols-[100px_1fr] gap-2">
+                <div className="text-sm font-medium text-muted-foreground">Name:</div>
+                <div>
+                  {clerkUser?.firstName || ""} {clerkUser?.lastName || ""}
+                </div>
+              </div>
               <div className="grid grid-cols-[100px_1fr] gap-2">
                 <div className="text-sm font-medium text-muted-foreground">Email:</div>
                 <div>{clerkUser?.emailAddresses[0]?.emailAddress || ""}</div>

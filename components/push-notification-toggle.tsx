@@ -139,7 +139,9 @@ export function PushNotificationToggle() {
       const serializedSubscription = JSON.parse(JSON.stringify(sub));
 
       // Save subscription to server
-      await subscribeToPushNotifications(userId, serializedSubscription);
+      if (userId) {
+        await subscribeToPushNotifications(userId, serializedSubscription);
+      }
 
       setSubscription(sub);
       toast.success("Push notifications enabled");

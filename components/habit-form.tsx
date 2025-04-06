@@ -20,7 +20,7 @@ const formSchema = z.object({
   description: z.string().max(200, "Description is too long").optional(),
   frequency: z.enum(["daily", "weekly"]),
   reminderEnabled: z.boolean().default(false),
-  reminderTime: z.string().optional().nullable(),
+  reminderTime: z.string().optional(),
 })
 
 type FormValues = z.infer<typeof formSchema>
@@ -31,7 +31,7 @@ type FormValuesFixed = {
   frequency: "daily" | "weekly"
   reminderEnabled: boolean
   description?: string
-  reminderTime?: string | null
+  reminderTime?: string
 }
 
 export function HabitForm({
@@ -59,10 +59,11 @@ export function HabitForm({
 
   async function onSubmit(values: FormValuesFixed) {
     try {
-      // Convert null to undefined for reminderTime
+      // Prepare values for submission
       const formattedValues = {
         ...values,
-        reminderTime: values.reminderTime || undefined
+        // Only include reminderTime if reminderEnabled is true
+        reminderTime: values.reminderEnabled ? values.reminderTime : undefined
       }
 
       if (isEditing) {
