@@ -30,6 +30,9 @@ export default function RootLayout({
     }}
     >
       <html lang="en" suppressHydrationWarning>
+        <Head>
+        <meta name="google-site-verification" content="dmEhPdWWVlrnQoaQBLhhoQrPMsvXafz1RbnW75a80P0" />
+        </Head>
         <body className={inter.className}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
             <NotificationsProvider>
@@ -53,3 +56,4 @@ export default function RootLayout({
 
 
 import './globals.css'
+import Head from "next/head"
