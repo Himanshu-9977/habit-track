@@ -1,7 +1,7 @@
 import { auth } from "@clerk/nextjs/server"
 
-export function DashboardHeader() {
-  const { userId } = auth()
+export async function DashboardHeader() {
+  const { userId } = await auth()
 
   return (
     <div className="flex flex-col space-y-2">
