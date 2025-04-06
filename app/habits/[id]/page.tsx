@@ -3,11 +3,13 @@ import { getHabitById } from "@/lib/habits"
 import { auth } from "@clerk/nextjs/server"
 import { notFound, redirect } from "next/navigation"
 
-export default async function EditHabitPage({
-  params,
-}: {
-  params: { id: string }
-}) {
+interface EditHabitPageProps {
+  params: {
+    id: string
+  }
+}
+
+export default async function EditHabitPage({ params }: EditHabitPageProps) {
   const { userId } = await auth()
 
   if (!userId) {
@@ -27,4 +29,3 @@ export default async function EditHabitPage({
     </div>
   )
 }
-
