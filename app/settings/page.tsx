@@ -28,15 +28,10 @@ export default async function SettingsPage() {
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
-              <div className="grid grid-cols-[100px_1fr] gap-2">
-                <div className="text-sm font-medium text-muted-foreground">Name:</div>
-                <div>
-                  {user?.firstName || clerkUser?.firstName || ""} {user?.lastName || clerkUser?.lastName || ""}
-                </div>
-              </div>
+              
               <div className="grid grid-cols-[100px_1fr] gap-2">
                 <div className="text-sm font-medium text-muted-foreground">Email:</div>
-                <div>{user?.email || clerkUser?.emailAddresses[0]?.emailAddress || ""}</div>
+                <div>{clerkUser?.emailAddresses[0]?.emailAddress || ""}</div>
               </div>
             </div>
           </CardContent>
