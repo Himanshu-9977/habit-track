@@ -15,7 +15,9 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Habit Tracker",
   description: "Track your habits and build consistency",
-  // manifest: "/manifest.json",
+  verification: {
+    google: "dmEhPdWWVlrnQoaQBLhhoQrPMsvXafz1RbnW75a80P0",
+  },
 }
 
 export default function RootLayout({
