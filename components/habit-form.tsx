@@ -20,10 +20,19 @@ const formSchema = z.object({
   description: z.string().max(200, "Description is too long").optional(),
   frequency: z.enum(["daily", "weekly"]),
   reminderEnabled: z.boolean().default(false),
-  reminderTime: z.string().optional(),
+  reminderTime: z.string().optional().nullable(),
 })
 
 type FormValues = z.infer<typeof formSchema>
+
+// This is a workaround for the TypeScript errors with react-hook-form
+type FormValuesFixed = {
+  name: string
+  frequency: "daily" | "weekly"
+  reminderEnabled: boolean
+  description?: string
+  reminderTime?: string | null
+}
 
 export function HabitForm({
   habit,
@@ -41,20 +50,26 @@ export function HabitForm({
     reminderTime: habit?.reminderTime || "",
   }
 
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<FormValuesFixed>({
+    resolver: zodResolver(formSchema) as any,
     defaultValues,
   })
 
   const reminderEnabled = form.watch("reminderEnabled")
 
-  async function onSubmit(values: FormValues) {
+  async function onSubmit(values: FormValuesFixed) {
     try {
+      // Convert null to undefined for reminderTime
+      const formattedValues = {
+        ...values,
+        reminderTime: values.reminderTime || undefined
+      }
+
       if (isEditing) {
-        await updateHabit(habit._id, values)
+        await updateHabit(habit._id.toString(), formattedValues)
         toast.success("Habit updated successfully")
       } else {
-        await createHabit(values)
+        await createHabit(formattedValues)
         toast.success("Habit created successfully")
       }
       router.push("/")
@@ -68,9 +83,9 @@ export function HabitForm({
     <Card>
       <CardContent className="pt-6">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit as any)} className="space-y-6">
             <FormField
-              control={form.control}
+              control={form.control as any}
               name="name"
               render={({ field }) => (
                 <FormItem>
@@ -85,7 +100,7 @@ export function HabitForm({
             />
 
             <FormField
-              control={form.control}
+              control={form.control as any}
               name="description"
               render={({ field }) => (
                 <FormItem>
@@ -100,7 +115,7 @@ export function HabitForm({
             />
 
             <FormField
-              control={form.control}
+              control={form.control as any}
               name="frequency"
               render={({ field }) => (
                 <FormItem>
@@ -123,7 +138,7 @@ export function HabitForm({
             />
 
             <FormField
-              control={form.control}
+              control={form.control as any}
               name="reminderEnabled"
               render={({ field }) => (
                 <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
@@ -140,13 +155,13 @@ export function HabitForm({
 
             {reminderEnabled && (
               <FormField
-                control={form.control}
+                control={form.control as any}
                 name="reminderTime"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Reminder Time</FormLabel>
                     <FormControl>
-                      <Input type="time" {...field} />
+                      <Input type="time" {...field} value={field.value || ""} />
                     </FormControl>
                     <FormDescription>When to send the reminder.</FormDescription>
                     <FormMessage />

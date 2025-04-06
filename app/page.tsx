@@ -7,6 +7,7 @@ import { auth } from "@clerk/nextjs/server"
 import { getHabits, getStats } from "@/lib/habits"
 import Link from "next/link"
 import { ArrowRight, CheckCircle, TrendingUp, Bell } from "lucide-react"
+import Image from "next/image"
 
 export default async function Home() {
   const { userId } = await auth()
@@ -69,10 +70,12 @@ export default async function Home() {
               </div>
             </div>
             <div className="flex items-center justify-center">
-              <img
+              <Image
                 alt="Habit Tracker Dashboard"
                 className="aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
-                src="/placeholder.svg?height=550&width=800"
+                src="/placeholder.jpg"
+                width={800}
+                height={550}
               />
             </div>
           </div>
