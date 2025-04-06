@@ -3,20 +3,15 @@ import { getHabitById } from "@/lib/habits"
 import { auth } from "@clerk/nextjs/server"
 import { notFound, redirect } from "next/navigation"
 
-interface EditHabitPageProps {
-  params: {
-    id: string
-  }
-}
-
-export default async function EditHabitPage({ params }: EditHabitPageProps) {
+type paramsType = Promise<{ id: string }>;
+export default async function EditHabitPage({ params }: {params: paramsType}) {
   const { userId } = await auth()
-
+  const {id} = await params
   if (!userId) {
     redirect("/sign-in")
   }
 
-  const habit = await getHabitById(params.id, userId)
+  const habit = await getHabitById(id, userId)
 
   if (!habit) {
     notFound()
