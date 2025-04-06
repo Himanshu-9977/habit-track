@@ -18,13 +18,13 @@ import { cn } from '@/lib/utils'
 
 export default function SignInPage() {
   return (
-    <div className="grid w-full grow items-center h-screen px-4 sm:justify-center">
+    <div className="min-h-[calc(100vh-3.5rem)] flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8">
       <SignIn.Root>
         <Clerk.Loading>
           {(isGlobalLoading) => (
             <>
               <SignIn.Step name="start">
-                <Card className="w-full sm:w-96">
+                <Card className="w-full max-w-xl shadow-lg border-0">
                   <CardHeader>
                     <CardTitle>Sign in to TaskNest</CardTitle>
                     <CardDescription>Welcome back! Please sign in to continue</CardDescription>
@@ -91,7 +91,7 @@ export default function SignInPage() {
               </SignIn.Step>
 
               <SignIn.Step name="choose-strategy">
-                <Card className="w-full sm:w-96">
+                <Card className="w-full max-w-xl shadow-lg border-0">
                   <CardHeader>
                     <CardTitle>Use another method</CardTitle>
                     <CardDescription>

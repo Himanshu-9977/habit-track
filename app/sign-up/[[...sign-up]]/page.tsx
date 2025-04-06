@@ -18,13 +18,13 @@ import { cn } from '@/lib/utils'
 
 export default function SignUpPage() {
   return (
-    <div className="grid w-full grow items-center h-screen px-4 sm:justify-center">
+    <div className="min-h-[calc(100vh-3.5rem)] flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8">
       <SignUp.Root>
         <Clerk.Loading>
           {(isGlobalLoading) => (
             <>
               <SignUp.Step name="start">
-                <Card className="w-full sm:w-96">
+                <Card className="w-full max-w-xl shadow-lg border-0">
                   <CardHeader>
                     <CardTitle>Create your account</CardTitle>
                     <CardDescription>
@@ -32,7 +32,7 @@ export default function SignUpPage() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="grid gap-y-4">
-                      
+
                       <Clerk.Connection name="google" asChild>
                         <Button
                           size="sm"
