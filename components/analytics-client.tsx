@@ -49,7 +49,7 @@ export function AnalyticsClient({ initialStats }: { initialStats: Stats }) {
           <CardHeader>
             <CardTitle>Weekly Completion</CardTitle>
           </CardHeader>
-          <CardContent className="p-0 sm:p-6">
+          <CardContent className="p-0 sm:p-6 overflow-x-auto overflow-y-hidden">
             <ChartContainer config={chartConfig} className="h-[250px] sm:h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={chartData} barSize={30}>

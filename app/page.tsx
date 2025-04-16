@@ -18,7 +18,7 @@ export default async function Home() {
     const stats = await getStats(userId)
 
     return (
-      <div className="container py-6 space-y-8 px-4 sm:px-6 lg:px-8">
+      <div className="container py-6 space-y-8 px-4 sm:px-6 lg:px-8 mb-10">
         <DashboardHeader />
         <StatsCards stats={stats} />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

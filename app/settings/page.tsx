@@ -14,7 +14,7 @@ export default async function SettingsPage() {
   const clerkUser = await currentUser()
 
   return (
-    <div className="container max-w-2xl py-8">
+    <div className="container max-w-2xl py-8 overflow-hidden">
       <h1 className="text-3xl font-bold mb-6">Settings</h1>
 
       <div className="space-y-6">
@@ -34,7 +34,7 @@ export default async function SettingsPage() {
               </div>
               <div className="grid grid-cols-[100px_1fr] gap-2">
                 <div className="text-sm font-medium text-muted-foreground">Email:</div>
-                <div>{clerkUser?.emailAddresses[0]?.emailAddress || ""}</div>
+                <div className="text-sm md:text-base break-all">{clerkUser?.emailAddresses[0]?.emailAddress || ""}</div>
               </div>
             </div>
           </CardContent>
@@ -46,7 +46,7 @@ export default async function SettingsPage() {
             <CardDescription>Manage your notification preferences</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-0 justify-center md:justify-between">
               <div>
                 <div className="font-medium">Push Notifications</div>
                 <div className="text-sm text-muted-foreground">Receive notifications in your browser</div>

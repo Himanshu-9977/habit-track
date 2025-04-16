@@ -36,7 +36,7 @@ export function StreakChart({ data }: { data: StreakData[] }) {
 
   return (
     <Card className="overflow-hidden">
-      <CardContent className="pt-6 p-0 sm:p-6">
+      <CardContent className="pt-6 p-0 sm:p-6 overflow-x-auto overflow-y-hidden">
         <ChartContainer config={chartConfig} className="h-[180px] sm:h-[200px]">
           <BarChart data={chartData} barSize={25}>
             <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fontSize: 12 }} />

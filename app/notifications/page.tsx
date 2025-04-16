@@ -14,10 +14,10 @@ export default async function NotificationsPage() {
 
   return (
     <div className="container max-w-2xl py-8">
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col md:flex-row items-center justify-between mb-6">
         <h1 className="text-3xl font-bold">Notifications</h1>
         <form action={markAllAsRead}>
-          <button className="text-sm text-muted-foreground hover:underline">Mark all as read</button>
+          <button className="text-sm text-muted-foreground underline">Mark all as read</button>
         </form>
       </div>
       <NotificationList notifications={notifications} />

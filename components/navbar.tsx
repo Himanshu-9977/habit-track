@@ -75,7 +75,7 @@ export function Navbar() {
                 <SheetHeader>
                   <SheetTitle>Habit Tracker</SheetTitle>
                 </SheetHeader>
-                <div className="py-6">
+                <div className="py-6 text-center">
                   {isSignedIn ? (
                     <>
                       <nav className="flex flex-col space-y-6 mb-8">
@@ -83,7 +83,7 @@ export function Navbar() {
                         <NavLink href="/analytics">Analytics</NavLink>
                         <NavLink href="/settings">Settings</NavLink>
                       </nav>
-                      <div className="flex items-center justify-between pt-6 border-t">
+                      <div className="flex items-center justify-center pt-6 border-t gap-10">
                         <div className="flex items-center space-x-4">
                           <ModeToggle />
                         </div>
